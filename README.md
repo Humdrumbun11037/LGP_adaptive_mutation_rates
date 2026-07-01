@@ -135,7 +135,7 @@ for seed in `seq 1 3`; do tpg-run-mpi.sh -n 5 -s $seed; done
 
 For the DRA, I use:
 ```
- for seed in `seq 2 21`; do sbatch $TPG/scripts/run/tpg-run-slurm.sh -s $seed -p $TPG/configs/5_ant_dynamic_1_fitness_tot-reg.yaml; done
+for seed in `seq 2 21`; do sbatch $TPG/scripts/run/tpg-run-slurm_short.sh -s $seed -p $TPG/configs/gradient_test_perception_4_peaks.yaml; done
 ```
 
 
