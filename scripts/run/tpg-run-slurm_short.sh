@@ -9,9 +9,6 @@
 #SBATCH --mail-user=alinaqvi8014@gmail.com
 #SBATCH --mail-type=BEGIN,END,FAIL
 
-mkdir -p checkpoints
-mkdir -p logs
-
 #defaults
 mode=0 #Train:0, Replay:1, Debug:2
 seed_tpg=42
@@ -25,6 +22,12 @@ do
       s) seed_tpg=${OPTARG};;
    esac
 done
+
+# Keep each configuration's outputs in its own experiment directory.
+experiment_name=$(basename "${parameters_file%.*}")
+experiment_dir="$TPG/experiments/$experiment_name"
+mkdir -p "$experiment_dir"/{checkpoints,frames,logs,plots}
+cd "$experiment_dir" || exit 1
 
 # Start from scratch ###########################################################
 if [ $mode -eq 0 ]; then
